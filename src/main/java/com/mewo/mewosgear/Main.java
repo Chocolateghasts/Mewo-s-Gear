@@ -1,6 +1,7 @@
 package com.mewo.mewosgear;
 
 import com.mewo.mewosgear.registry.Item.ModItems;
+import com.mewo.mewosgear.registry.Item.ModWeapons;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -18,11 +19,14 @@ public class Main {
         IEventBus modBus = context.getModEventBus();
 
         ModItems.register(modBus);
+        ModWeapons.register(modBus);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.STEEL_INGOT);
+            event.accept(ModWeapons.STEEL_SWORD);
+
         }
     }
 

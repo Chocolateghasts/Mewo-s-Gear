@@ -1,8 +1,6 @@
 package com.mewo.mewosgear.content.Item;
 
-import com.mewo.mewosgear.modifiers.IModifier;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import com.mewo.mewosgear.content.modifiers.IModifier;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 
@@ -14,7 +12,7 @@ public abstract class SpecialSwordItem extends SwordItem implements IWeapon{
     private int maxModifierLevel;
     private int modifierLevel;
 
-    public SpecialSwordItem(Tier tier, int dmg, int aspd, Properties properties) {
+    public SpecialSwordItem(Tier tier, int dmg, float aspd, Properties properties) {
         super(tier, dmg, aspd, properties);
     }
 

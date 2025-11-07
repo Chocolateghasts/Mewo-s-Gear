@@ -1,4 +1,4 @@
-package com.mewo.mewosgear.modifiers;
+package com.mewo.mewosgear.content.modifiers;
 
 public interface IModifier {
     String getName();
