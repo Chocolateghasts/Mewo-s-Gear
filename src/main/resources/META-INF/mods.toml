@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+[[mods]]
+modId="mewosgear"
+version="1.0.0"
+displayName="Mewo's Gear"
+authors="Mewo_cat"
+description='''A work in progress mod that should someday add gear and equipment.'''
+[[dependencies.mewosgear]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47.0.0,48.0.0)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.mewosgear]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
