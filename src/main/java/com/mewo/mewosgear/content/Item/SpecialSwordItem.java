@@ -1,13 +1,17 @@
 package com.mewo.mewosgear.content.Item;
 
 import com.mewo.mewosgear.content.modifiers.IModifier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class SpecialSwordItem extends SwordItem implements IWeapon{
+import static com.mewo.mewosgear.content.modifiers.ModifierCategory.ONHIT;
+
+public abstract class SpecialSwordItem extends SwordItem implements IWeapon {
     private final Set<IModifier> modifiers = new HashSet<>();
     private int maxModifierLevel;
     private int modifierLevel;
@@ -15,6 +19,8 @@ public abstract class SpecialSwordItem extends SwordItem implements IWeapon{
     public SpecialSwordItem(Tier tier, int dmg, float aspd, Properties properties) {
         super(tier, dmg, aspd, properties);
     }
+
+
 
     public boolean addModifier(IModifier modifier) {
         if (modifierLevel + modifier.getTier() <= maxModifierLevel) {
@@ -36,5 +42,26 @@ public abstract class SpecialSwordItem extends SwordItem implements IWeapon{
 
     public Set<IModifier> getModifiers() {
         return Set.copyOf(modifiers);
+    }
+
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity ihavenoidea) {
+        if (super.hurtEnemy(stack, ihavenoidea, target)) {
+            for (IModifier modifier : getModifiers()) {
+                if (modifier.getCategory() == ONHIT) {
+                    modifier.onHit(target);
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public void setMaxModifierLevel(int maxModifierLevel) {
+        this.maxModifierLevel = maxModifierLevel;
+    }
+
+    public void setModifierLevel(int modifierLevel) {
+        this.modifierLevel = modifierLevel;
     }
 }
