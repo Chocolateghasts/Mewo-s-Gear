@@ -1,6 +1,7 @@
 package com.mewo.mewosgear.content.Item;
 
 import com.mewo.mewosgear.content.modifiers.IModifier;
+import com.mewo.mewosgear.content.modifiers.ModModifiers;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -15,13 +16,14 @@ public abstract class SpecialSwordItem extends SwordItem implements IWeapon {
     private final Set<IModifier> modifiers = new HashSet<>();
     private int maxModifierLevel;
     private int modifierLevel;
+    private int testInt = 0;
 
     public SpecialSwordItem(Tier tier, int dmg, float aspd, Properties properties) {
         super(tier, dmg, aspd, properties);
     }
 
 
-
+    // TODO: Make it per-itemstack, not global
     public boolean addModifier(IModifier modifier) {
         if (modifierLevel + modifier.getTier() <= maxModifierLevel) {
             if (modifiers.add(modifier)) {
@@ -47,6 +49,10 @@ public abstract class SpecialSwordItem extends SwordItem implements IWeapon {
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity ihavenoidea) {
         if (super.hurtEnemy(stack, ihavenoidea, target)) {
+            testInt++;
+            if (testInt % 8 == 0) {
+                addModifier(ModModifiers.POISON_MODIFIER);
+            }
             for (IModifier modifier : getModifiers()) {
                 if (modifier.getCategory() == ONHIT) {
                     modifier.onHit(target);
