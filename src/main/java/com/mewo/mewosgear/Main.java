@@ -1,5 +1,6 @@
 package com.mewo.mewosgear;
 
+import com.mewo.mewosgear.content.block.ModBlocks;
 import com.mewo.mewosgear.registry.Item.ModItems;
 import com.mewo.mewosgear.registry.Item.ModWeapons;
 import com.mojang.logging.LogUtils;
@@ -21,6 +22,7 @@ public class Main {
     public Main(FMLJavaModLoadingContext context) {
         IEventBus modBus = context.getModEventBus();
         ModItems.register(modBus);
+        ModBlocks.register(modBus);
         ModWeapons.register(modBus);
     }
 

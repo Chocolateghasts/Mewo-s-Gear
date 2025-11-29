@@ -1,4 +1,8 @@
 {
   "item.mewosgear.steel_ingot": "Steel Ingot",
-  "item.mewosgear.steel_sword": "Steel Sword"
+  "item.mewosgear.steel_sword": "Steel Sword",
+
+  "block.mewosgear.tool_modification_table": "Tool Modification Table",
+
+  "creativetab.mewosgear": "Mewo's Gear"
 }
