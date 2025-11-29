@@ -1,12 +1,8 @@
 package com.mewo.mewosgear.registry.Item;
 
-import com.mewo.mewosgear.content.Item.SpecialSwordItem;
-import com.mewo.mewosgear.content.modifiers.IModifier;
+import com.mewo.mewosgear.content.item.SpecialSwordItem;
 import com.mewo.mewosgear.content.modifiers.ModModifiers;
-import com.mewo.mewosgear.content.modifiers.ModifierCategory;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,13 +12,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static com.mewo.mewosgear.Main.LOGGER;
 import static com.mewo.mewosgear.Main.MOD_ID;
-import static com.mewo.mewosgear.content.modifiers.ModifierCategory.ONHIT;
 
 public class ModWeapons {
     public static final DeferredRegister<Item> WEAPONS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
     public static SpecialSwordItem createSwordItem(Tier tier, int dmg, float aspd, Item.Properties properties) {
-        SpecialSwordItem item = new SpecialSwordItem(tier, dmg, aspd, properties) {
+        SpecialSwordItem item = new SpecialSwordItem(tier, dmg, aspd, 10, properties) {
 
         };
         return item;
@@ -36,10 +31,10 @@ public class ModWeapons {
         WEAPONS.register(bus);
     }
 
-    public static void test() {
-        STEEL_SWORD.get().setMaxModifierLevel(10);
-        boolean test = STEEL_SWORD.get().addModifier(ModModifiers.FIRE_MODIFIER);
-        LOGGER.info("Adding modifier: {} ", test);
-    }
+//    public static void test() {
+//        STEEL_SWORD.get().setMaxModifierLevel(10);
+//        boolean test = STEEL_SWORD.get().addModifier(ModModifiers.FIRE_MODIFIER);
+//        LOGGER.info("Adding modifier: {} ", test);
+//    }
 
 }
