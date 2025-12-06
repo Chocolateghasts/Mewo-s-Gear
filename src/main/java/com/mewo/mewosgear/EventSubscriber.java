@@ -11,6 +11,6 @@ import static com.mewo.mewosgear.Main.MOD_ID;
 public class EventSubscriber {
     @SubscribeEvent
     public static void onServerStarting(ServerStartingEvent event) {
-        ModWeapons.test();
+//        ModWeapons.test();
     }
 }
