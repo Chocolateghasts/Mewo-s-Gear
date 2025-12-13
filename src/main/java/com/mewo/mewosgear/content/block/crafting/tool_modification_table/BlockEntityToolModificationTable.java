@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -61,7 +62,6 @@ public class BlockEntityToolModificationTable extends BlockEntity implements Men
             }
         };
     }
-
 
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
@@ -116,5 +116,9 @@ public class BlockEntityToolModificationTable extends BlockEntity implements Men
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         testInt = nbt.getInt("testInt");
+    }
+
+    public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T t) {
+
     }
 }

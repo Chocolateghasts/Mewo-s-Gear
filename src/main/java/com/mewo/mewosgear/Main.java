@@ -1,5 +1,6 @@
 package com.mewo.mewosgear;
 
+import com.mewo.mewosgear.content.block.ModBlockEntities;
 import com.mewo.mewosgear.content.block.ModBlocks;
 import com.mewo.mewosgear.registry.Item.ModItems;
 import com.mewo.mewosgear.registry.Item.ModWeapons;
@@ -20,10 +21,11 @@ public class Main {
     public static final String MOD_ID = "mewosgear";
 
     public Main(FMLJavaModLoadingContext context) {
-        IEventBus modBus = context.getModEventBus();
-        ModItems.register(modBus);
-        ModBlocks.register(modBus);
-        ModWeapons.register(modBus);
+        IEventBus bus = context.getModEventBus();
+        ModItems.register(bus);
+        ModBlocks.register(bus);
+        ModWeapons.register(bus);
+        ModBlockEntities.register(bus);
     }
 
 
