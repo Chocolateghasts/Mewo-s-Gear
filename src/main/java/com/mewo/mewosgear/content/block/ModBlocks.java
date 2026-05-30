@@ -1,6 +1,7 @@
 package com.mewo.mewosgear.content.block;
 
 import com.mewo.mewosgear.Main;
+import com.mewo.mewosgear.content.block.crafting.tool_modification_table.BlockToolModificationTable;
 import com.mewo.mewosgear.registry.Item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -20,7 +21,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> TOOL_MODIFICATION_TABLE =
             registerBlock("tool_modification_table",
-                    () -> new Block(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)));
+                    () -> new BlockToolModificationTable(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)));
 
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {

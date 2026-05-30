@@ -15,7 +15,7 @@ import java.util.Set;
 
 import static com.mewo.mewosgear.Main.MOD_ID;
 
-public abstract class SpecialSwordItem extends SwordItem implements IWeapon {
+public abstract class SpecialSwordItem extends SwordItem {
     private final Set<IModifier> modifiers = new HashSet<>();
 
     private static final int DEFAULT_MAX_MODIFIER_LEVEL = 5;
@@ -104,3 +104,4 @@ public abstract class SpecialSwordItem extends SwordItem implements IWeapon {
         return Set.copyOf(modifierSet);
     }
 }
+
