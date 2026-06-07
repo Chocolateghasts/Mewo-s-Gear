@@ -1,11 +1,7 @@
 package com.mewo.mewosgear;
 
-import com.mewo.mewosgear.content.registry.ModBlockEntities;
-import com.mewo.mewosgear.content.registry.ModBlocks;
-import com.mewo.mewosgear.content.registry.ModMenuTypes;
+import com.mewo.mewosgear.content.registry.*;
 import com.mewo.mewosgear.network.ModNetworkHandler;
-import com.mewo.mewosgear.content.registry.ModItems;
-import com.mewo.mewosgear.content.registry.ModWeapons;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,6 +23,7 @@ public class Main {
         ModWeapons.register(bus);
         ModBlockEntities.register(bus);
         ModMenuTypes.register(bus);
+        ModEffects.register(bus);
 
         bus.addListener(this::commonSetup);
     }

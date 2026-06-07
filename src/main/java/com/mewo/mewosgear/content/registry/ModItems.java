@@ -1,7 +1,6 @@
 package com.mewo.mewosgear.content.registry;
 
-import com.mewo.mewosgear.content.modifiers.ModModifiers;
-import com.mewo.mewosgear.content.modifiers.ModifierItem;
+import com.mewo.mewosgear.content.item.ModifierItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,7 +16,7 @@ public class ModItems {
     public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () ->
             new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> POISEN_MODIFIER = ITEMS.register("poisen_modifier", () ->
+    public static final RegistryObject<Item> POISON_MODIFIER = ITEMS.register("poison_modifier", () ->
         new ModifierItem(new Item.Properties(), ModModifiers.POISON_MODIFIER));
 
     public static void register(IEventBus bus) {

@@ -1,7 +1,9 @@
-package com.mewo.mewosgear.content.modifiers;
+package com.mewo.mewosgear.content.registry;
 
+import com.mewo.mewosgear.content.modifiers.IModifier;
+import com.mewo.mewosgear.content.modifiers.ModifierCategory;
+import com.mewo.mewosgear.content.modifiers.SimpleModifier;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
 import java.util.HashMap;
@@ -30,8 +32,7 @@ public class ModModifiers {
     public static final IModifier POISON_MODIFIER = new SimpleModifier("poison_modifier", 1, ModifierCategory.ONHIT) {
         @Override
         public void onHit(LivingEntity target) {
-            target.addEffect(new MobEffectInstance(MobEffects.POISON, 360));
-            System.out.println("OWIE");
+            target.addEffect(new MobEffectInstance(ModEffects.TRUE_POISON.get(), 360));
         }
     };
 

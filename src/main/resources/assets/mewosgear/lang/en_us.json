@@ -1,8 +1,11 @@
 {
   "item.mewosgear.steel_ingot": "Steel Ingot",
   "item.mewosgear.steel_sword": "Steel Sword",
+  "item.mewosgear.poison_modifier": "Poison Modifier",
 
   "block.mewosgear.tool_modification_table": "Tool Modification Table",
 
-  "creativetab.mewosgear": "Mewo's Gear"
+  "creativetab.mewosgear": "Mewo's Gear",
+
+  "modifier.mewosgear.poison_modifier": "Poison"
 }

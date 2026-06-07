@@ -2,7 +2,7 @@ package com.mewo.mewosgear.content.block.functional.tool_modification_table;
 
 import com.mewo.mewosgear.content.item.SpecialSwordItem;
 import com.mewo.mewosgear.content.modifiers.IModifier;
-import com.mewo.mewosgear.content.modifiers.ModifierItem;
+import com.mewo.mewosgear.content.item.ModifierItem;
 import com.mewo.mewosgear.content.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -92,6 +92,7 @@ public class BlockEntityToolModificationTable extends BlockEntity implements Men
             IModifier iModifier = ((ModifierItem) modifier.getItem()).getCurrentModifier();
 
             if (specialSwordItem.addModifier(iModifier, tool)) modifier.shrink(1);
+            setChanged();
         }
     }
 

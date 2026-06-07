@@ -20,7 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModWeapons.STEEL_SWORD, "tools");
         simpleItem(ModItems.STEEL_INGOT, "materials");
-        simpleItem(ModItems.POISEN_MODIFIER, "modifiers");
+        simpleItem(ModItems.POISON_MODIFIER, "modifiers");
     }
 
     @SuppressWarnings("removal")

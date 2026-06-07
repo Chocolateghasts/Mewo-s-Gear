@@ -1,5 +1,6 @@
-package com.mewo.mewosgear.content.modifiers;
+package com.mewo.mewosgear.content.item;
 
+import com.mewo.mewosgear.content.modifiers.IModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
