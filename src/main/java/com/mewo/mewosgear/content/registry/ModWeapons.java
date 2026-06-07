@@ -1,8 +1,7 @@
-package com.mewo.mewosgear.registry.Item;
+package com.mewo.mewosgear.content.registry;
 
 
 import com.mewo.mewosgear.content.item.SpecialSwordItem;
-import com.mewo.mewosgear.content.modifiers.ModModifiers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
@@ -11,7 +10,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.mewo.mewosgear.Main.LOGGER;
 import static com.mewo.mewosgear.Main.MOD_ID;
 
 public class ModWeapons {

@@ -1,7 +1,7 @@
 package com.mewo.mewosgear.dataGen;
 
 import com.mewo.mewosgear.Main;
-import com.mewo.mewosgear.content.block.ModBlocks;
+import com.mewo.mewosgear.content.registry.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;

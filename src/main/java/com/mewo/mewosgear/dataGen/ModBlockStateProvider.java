@@ -1,6 +1,7 @@
 package com.mewo.mewosgear.dataGen;
 
 import com.mewo.mewosgear.Main;
+import com.mewo.mewosgear.content.registry.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -14,10 +15,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
+        blockWithItem(ModBlocks.TOOL_MODIFICATION_TABLE, "crafting");
     }
 
-    private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
-        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    private void blockWithItem(RegistryObject<? extends Block> block, String category) {
+        String name = block.getId().getPath();
+        simpleBlockWithItem(
+                block.get(),
+                models().cubeAll(name, modLoc("block/" + category + "/" + name + "/all")));
     }
 }

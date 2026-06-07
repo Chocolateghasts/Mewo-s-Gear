@@ -1,17 +1,17 @@
 package com.mewo.mewosgear;
 
-import com.mewo.mewosgear.content.block.ModBlockEntities;
-import com.mewo.mewosgear.content.block.ModBlocks;
-import com.mewo.mewosgear.registry.Item.ModItems;
-import com.mewo.mewosgear.registry.Item.ModWeapons;
+import com.mewo.mewosgear.content.registry.ModBlockEntities;
+import com.mewo.mewosgear.content.registry.ModBlocks;
+import com.mewo.mewosgear.content.registry.ModMenuTypes;
+import com.mewo.mewosgear.network.ModNetworkHandler;
+import com.mewo.mewosgear.content.registry.ModItems;
+import com.mewo.mewosgear.content.registry.ModWeapons;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -26,8 +26,14 @@ public class Main {
         ModBlocks.register(bus);
         ModWeapons.register(bus);
         ModBlockEntities.register(bus);
+        ModMenuTypes.register(bus);
+
+        bus.addListener(this::commonSetup);
     }
 
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(ModNetworkHandler::register);
+    }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {

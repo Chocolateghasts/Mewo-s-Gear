@@ -1,8 +1,7 @@
-package com.mewo.mewosgear.content.block;
+package com.mewo.mewosgear.content.registry;
 
 import com.mewo.mewosgear.Main;
-import com.mewo.mewosgear.content.block.crafting.tool_modification_table.BlockToolModificationTable;
-import com.mewo.mewosgear.registry.Item.ModItems;
+import com.mewo.mewosgear.content.block.functional.tool_modification_table.BlockToolModificationTable;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +18,7 @@ public class ModBlocks {
     public static DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Main.MOD_ID);
 
-    public static final RegistryObject<Block> TOOL_MODIFICATION_TABLE =
+    public static final RegistryObject<BlockToolModificationTable> TOOL_MODIFICATION_TABLE =
             registerBlock("tool_modification_table",
                     () -> new BlockToolModificationTable(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)));
 

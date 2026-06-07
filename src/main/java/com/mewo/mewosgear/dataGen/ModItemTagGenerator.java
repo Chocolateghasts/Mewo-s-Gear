@@ -19,6 +19,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-
+//        this.tag(ModTags.Blocks.TAG).add(ModBlocks.BLOCK.get()).addTag(Tags.Blocks.ORES);
     }
 }

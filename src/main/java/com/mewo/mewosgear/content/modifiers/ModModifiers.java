@@ -31,8 +31,12 @@ public class ModModifiers {
         @Override
         public void onHit(LivingEntity target) {
             target.addEffect(new MobEffectInstance(MobEffects.POISON, 360));
+            System.out.println("OWIE");
         }
     };
 
-
+    static {
+        modifiers.put(FIRE_MODIFIER.getName(), FIRE_MODIFIER);
+        modifiers.put(POISON_MODIFIER.getName(), POISON_MODIFIER);
+    }
 }

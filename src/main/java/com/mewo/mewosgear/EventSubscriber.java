@@ -1,6 +1,5 @@
 package com.mewo.mewosgear;
 
-import com.mewo.mewosgear.registry.Item.ModWeapons;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,3 +13,4 @@ public class EventSubscriber {
 //        ModWeapons.test();
     }
 }
+
