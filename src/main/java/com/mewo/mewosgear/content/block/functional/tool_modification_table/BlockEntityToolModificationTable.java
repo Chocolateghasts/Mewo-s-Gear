@@ -1,6 +1,7 @@
 package com.mewo.mewosgear.content.block.functional.tool_modification_table;
 
 import com.mewo.mewosgear.content.item.SpecialSwordItem;
+import com.mewo.mewosgear.content.modifiers.IModifiable;
 import com.mewo.mewosgear.content.modifiers.IModifier;
 import com.mewo.mewosgear.content.item.ModifierItem;
 import com.mewo.mewosgear.content.registry.ModBlockEntities;
@@ -74,7 +75,7 @@ public class BlockEntityToolModificationTable extends BlockEntity implements Men
     public void tick(Level level, BlockPos pos, BlockState state) {
         ItemStack tool = itemHandler.getStackInSlot(0);
         ItemStack modifier = itemHandler.getStackInSlot(1);
-        hasTool = (!tool.isEmpty() && tool.getItem() instanceof SpecialSwordItem);
+        hasTool = (!tool.isEmpty() && tool.getItem() instanceof IModifiable);
 
         hasModifier = (!modifier.isEmpty() && modifier.getItem() instanceof ModifierItem);
 
@@ -88,10 +89,10 @@ public class BlockEntityToolModificationTable extends BlockEntity implements Men
         if (hasTool && hasModifier) {
             ItemStack tool = itemHandler.getStackInSlot(0);
             ItemStack modifier = itemHandler.getStackInSlot(1);
-            SpecialSwordItem specialSwordItem = (SpecialSwordItem) tool.getItem();
+            IModifiable modifiable = (IModifiable) tool.getItem();
             IModifier iModifier = ((ModifierItem) modifier.getItem()).getCurrentModifier();
 
-            if (specialSwordItem.addModifier(iModifier, tool)) modifier.shrink(1);
+            if (modifiable.addModifier(iModifier, tool)) modifier.shrink(1);
             setChanged();
         }
     }

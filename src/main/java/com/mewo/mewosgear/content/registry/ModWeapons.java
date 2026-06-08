@@ -1,7 +1,10 @@
 package com.mewo.mewosgear.content.registry;
 
 
+import com.mewo.mewosgear.content.item.ModifiableAxeItem;
+import com.mewo.mewosgear.content.item.ModifiableSwordItem;
 import com.mewo.mewosgear.content.item.SpecialSwordItem;
+import com.mewo.mewosgear.content.modifiers.IModifiable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
@@ -22,9 +25,12 @@ public class ModWeapons {
         return item;
     }
 
-    public static final RegistryObject<SpecialSwordItem> STEEL_SWORD = WEAPONS.register("steel_sword",
-            () -> createSwordItem(Tiers.DIAMOND, 7, 0.9F, new Item.Properties())
+    public static final RegistryObject<? extends Item> STEEL_SWORD = WEAPONS.register("steel_sword",
+            () -> new ModifiableSwordItem(Tiers.DIAMOND, 7, 0.9F, 10, new Item.Properties())
     );
+
+    public static final RegistryObject<? extends Item> STEEL_AXE = WEAPONS.register("steel_axe", () ->
+        new ModifiableAxeItem(Tiers.DIAMOND, 10, 1.4F, 10, new Item.Properties()));
 
     public static void register(IEventBus bus) {
         WEAPONS.register(bus);

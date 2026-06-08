@@ -1,7 +1,6 @@
-package com.mewo.mewosgear.content.item;
+package com.mewo.mewosgear.content.modifiers;
 
 import com.mewo.mewosgear.Main;
-import com.mewo.mewosgear.content.modifiers.IModifier;
 import com.mewo.mewosgear.content.registry.ModModifiers;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -9,39 +8,24 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static com.mewo.mewosgear.Main.MOD_ID;
-import static com.mewo.mewosgear.content.modifiers.ModifierCategory.*;
 
-public abstract class SpecialSwordItem extends SwordItem {
-    private static final int DEFAULT_MAX_MODIFIER_LEVEL = 5;
+public interface IModifiable {
+    int getMaxModifierLevel();
 
-    private int maxModifierLevel = DEFAULT_MAX_MODIFIER_LEVEL;
-
-    public SpecialSwordItem(Tier tier, int dmg, float aspd, int maxModifierLevel, Properties properties) {
-        super(tier, dmg, aspd, properties);
-        this.maxModifierLevel = maxModifierLevel;
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltipComponents, flag);
-
+    default void appendModifierText(ItemStack stack, Level level, List<Component> tooltipComponents, TooltipFlag flag) {
         CompoundTag nbt = stack.getOrCreateTag();
-        CompoundTag modNbt = nbt.getCompound(MOD_ID);
-        int current = modNbt.getInt("modifierLevel");
-        int max = modNbt.contains("maxModifierLevel") ? modNbt.getInt("maxModifierLevel") : this.maxModifierLevel;
+        CompoundTag modNBT = nbt.getCompound(Main.MOD_ID);
+        int current = modNBT.getInt("modifierLevel");
+        int max = getMaxModifierLevel();
 
         tooltipComponents.add(Component.literal("Modifiers: " + current + "/" + max)
                 .withStyle(ChatFormatting.GRAY));
@@ -59,17 +43,7 @@ public abstract class SpecialSwordItem extends SwordItem {
         }
     }
 
-    @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        for (IModifier modifier : getModifiers(stack)) {
-            if (modifier.getCategory() == ONHIT) {
-                modifier.onHit(stack, target, attacker);
-            }
-        }
-        return super.hurtEnemy(stack, target, attacker);
-    }
-
-    public boolean addToNBT(IModifier modifier, ItemStack stack) {
+    default boolean addToNBT(IModifier modifier, ItemStack stack) {
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
         ListTag list = modNbt.getList("modifiers", Tag.TAG_STRING);
@@ -79,7 +53,7 @@ public abstract class SpecialSwordItem extends SwordItem {
         return success;
     }
 
-    public boolean removeFromNBT(IModifier modifier, ItemStack stack) {
+    default boolean removeFromNBT(IModifier modifier, ItemStack stack) {
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
         ListTag list = modNbt.getList("modifiers", Tag.TAG_STRING);
@@ -95,27 +69,25 @@ public abstract class SpecialSwordItem extends SwordItem {
         return false;
     }
 
-    public boolean hasModifier(ItemStack stack, IModifier modifier) {
+    default boolean hasModifier(ItemStack stack, IModifier modifier) {
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
         ListTag modifierList = modNbt.getList("modifiers", Tag.TAG_STRING);
         return modifierList.contains(StringTag.valueOf(modifier.getName()));
     }
 
-    public boolean addModifier(IModifier modifier, ItemStack stack) {
+    default boolean addModifier(IModifier modifier, ItemStack stack) {
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
         if (hasModifier(stack, modifier)) return false;
         int modifierLevel = modNbt.getInt("modifierLevel");
         int maxModifierLevel = modNbt.contains("maxModifierLevel")
                 ? modNbt.getInt("maxModifierLevel")
-                : this.maxModifierLevel;
-
+                : getMaxModifierLevel();
         if (!modNbt.contains("maxModifierLevel")) {
-            modNbt.putInt("maxModifierLevel", this.maxModifierLevel);
+            modNbt.putInt("maxModifierLevel", getMaxModifierLevel());
             nbt.put(MOD_ID, modNbt);
         }
-
         if (modifier.getTier() + modifierLevel <= maxModifierLevel) {
             modNbt.putInt("modifierLevel", modifierLevel + modifier.getTier());
             nbt.put(MOD_ID, modNbt);
@@ -124,7 +96,7 @@ public abstract class SpecialSwordItem extends SwordItem {
         return false;
     }
 
-    public boolean removeModifier(IModifier modifier, ItemStack stack) {
+    default boolean removeModifier(IModifier modifier, ItemStack stack) {
         if (removeFromNBT(modifier, stack)) {
             CompoundTag nbt = stack.getOrCreateTag();
             CompoundTag modNbt = nbt.getCompound(MOD_ID);
@@ -136,13 +108,11 @@ public abstract class SpecialSwordItem extends SwordItem {
         return false;
     }
 
-    public Set<IModifier> getModifiers(ItemStack stack) {
+    default Set<IModifier> getModifiers(ItemStack stack) {
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
         ListTag list = modNbt.getList("modifiers", Tag.TAG_STRING);
-
         Set<IModifier> modifierSet = new HashSet<>();
-
         for (int i = 0; i < list.size(); i++) {
             String name = list.getString(i);
             IModifier modifier = ModModifiers.getModifier(name);
@@ -150,7 +120,6 @@ public abstract class SpecialSwordItem extends SwordItem {
                 modifierSet.add(ModModifiers.getModifier(name));
             }
         }
-
         return Set.copyOf(modifierSet);
     }
 }

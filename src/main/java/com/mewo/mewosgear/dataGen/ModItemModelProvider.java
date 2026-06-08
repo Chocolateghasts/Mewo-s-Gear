@@ -1,6 +1,7 @@
 package com.mewo.mewosgear.dataGen;
 
 import com.mewo.mewosgear.Main;
+import com.mewo.mewosgear.content.item.ModifierItem;
 import com.mewo.mewosgear.content.registry.ModItems;
 import com.mewo.mewosgear.content.registry.ModWeapons;
 import net.minecraft.data.PackOutput;
@@ -20,7 +21,12 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ModWeapons.STEEL_SWORD, "tools");
         simpleItem(ModItems.STEEL_INGOT, "materials");
-        simpleItem(ModItems.POISON_MODIFIER, "modifiers");
+
+        for (RegistryObject<Item> item : ModItems.ITEMS.getEntries()) {
+            if (item.get() instanceof ModifierItem) {
+                simpleItem(item, "modifiers");
+            }
+        }
     }
 
     @SuppressWarnings("removal")
