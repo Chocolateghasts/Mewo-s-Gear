@@ -9,7 +9,8 @@ import static com.mewo.mewosgear.Main.MOD_ID;
 public interface IModifier {
     String getName();
     int getTier();
-    ModifierCategory getCategory();
+    ModifierEnums.ModifierCategory getCategory();
+    ModifierEnums.ModifierToolType getToolType();
 
     void apply();
     void remove();

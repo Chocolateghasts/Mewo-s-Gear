@@ -1,37 +1,34 @@
 package com.mewo.mewosgear.content.registry;
 
-import com.mewo.mewosgear.content.misc.ExplosionVolatile;
 import com.mewo.mewosgear.content.modifiers.IModifier;
-import com.mewo.mewosgear.content.modifiers.ModifierCategory;
+import com.mewo.mewosgear.content.modifiers.ModifierEnums;
 import com.mewo.mewosgear.content.modifiers.SimpleModifier;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierCategory.*;
+import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierToolType.*;
 
 public class ModModifiers {
     private static final Log log = LogFactory.getLog(ModModifiers.class);
     public static Map<String, IModifier> modifiers = new HashMap<String, IModifier>();
     // TODO: add tier upgrade stuff
-    public static IModifier createModifier(String name, int tier, ModifierCategory category) {
-        IModifier modifier = new SimpleModifier(name, tier, category, 0xFFFFFF);
+    public static IModifier createModifier(String name, int tier, ModifierEnums.ModifierCategory category) {
+        IModifier modifier = new SimpleModifier(name, tier, category, WEAPON, 0xFFFFFF);
         modifiers.put(name, modifier);
         return modifier;
     }
@@ -42,42 +39,42 @@ public class ModModifiers {
         return modifiers.get(name);
     }
 
-    public static final IModifier FIRE_MODIFIER = new SimpleModifier("fire_modifier", 1, ModifierCategory.ONHIT, 0xFF4500) {
+    public static final IModifier FIRE_MODIFIER = new SimpleModifier("fire_modifier", 1, ONHIT, WEAPON, 0xFF4500) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             target.setSecondsOnFire(5);
         }
     };
 
-    public static final IModifier POISON_MODIFIER = new SimpleModifier("poison_modifier", 1, ModifierCategory.ONHIT, 0x4E9A00) {
+    public static final IModifier POISON_MODIFIER = new SimpleModifier("poison_modifier", 1, ONHIT, WEAPON, 0x4E9A00) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             target.addEffect(new MobEffectInstance(ModEffects.TRUE_POISON.get(), 360));
         }
     };
 
-    public static final IModifier WITHER_MODIFIER = new SimpleModifier("wither_modifier", 2, ModifierCategory.ONHIT, 0x2D2D2D) {
+    public static final IModifier WITHER_MODIFIER = new SimpleModifier("wither_modifier", 2, ONHIT, WEAPON, 0x2D2D2D) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             target.addEffect(new MobEffectInstance(MobEffects.WITHER, 360));
         }
     };
 
-    public static final IModifier LIFESTEAL_MODIFIER = new SimpleModifier("lifesteal_modifier", 2, ModifierCategory.ONHIT, 0xCC0000) {
+    public static final IModifier LIFESTEAL_MODIFIER = new SimpleModifier("lifesteal_modifier", 2, ONHIT, WEAPON, 0xCC0000) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             attacker.heal(1.0F);
         }
     };
 
-    public static final IModifier SLOWNESS_MODIFIER = new SimpleModifier("slowness_modifier", 1, ModifierCategory.ONHIT, 0x6495ED) {
+    public static final IModifier SLOWNESS_MODIFIER = new SimpleModifier("slowness_modifier", 1, ONHIT, WEAPON, 0x6495ED) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN));
         }
     };
 
-    public static final IModifier VOLATILE_MODIFIER = new SimpleModifier("volatile_modifier", 1, ModifierCategory.ONHIT, 0xFFAA00) {
+    public static final IModifier VOLATILE_MODIFIER = new SimpleModifier("volatile_modifier", 1, ONHIT, WEAPON, 0xFFAA00) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             if (!target.level().isClientSide) {
@@ -91,7 +88,7 @@ public class ModModifiers {
         }
     };
 
-    public static final IModifier RECKLESS_MODIFIER = new SimpleModifier("reckless_modifier", 2, ModifierCategory.ONHIT, 0xFF6600) {
+    public static final IModifier RECKLESS_MODIFIER = new SimpleModifier("reckless_modifier", 2, ONHIT, WEAPON, 0xFF6600) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             attacker.hurt(attacker.damageSources().mobAttack(target), 2);
@@ -99,7 +96,7 @@ public class ModModifiers {
         }
     };
 
-    public static final IModifier THUNDER_MODIFIER = new SimpleModifier("thunder_modifier", 3, ModifierCategory.ONHIT, 0xFFFF33) {
+    public static final IModifier THUNDER_MODIFIER = new SimpleModifier("thunder_modifier", 3, ONHIT, WEAPON, 0xFFFF33) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             if (target.level().isClientSide) return;
@@ -111,7 +108,7 @@ public class ModModifiers {
         }
     };
 
-    public static final IModifier GLUTTON_MODIFIER = new SimpleModifier("glutton_modifier", 3, ModifierCategory.ONHIT, 0x8B4513) {
+    public static final IModifier GLUTTON_MODIFIER = new SimpleModifier("glutton_modifier", 3, ONHIT, WEAPON, 0x8B4513) {
         @Override
         public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
             if (attacker instanceof Player) {

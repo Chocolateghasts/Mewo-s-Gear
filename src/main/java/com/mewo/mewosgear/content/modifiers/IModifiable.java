@@ -69,6 +69,8 @@ public interface IModifiable {
         return false;
     }
 
+    boolean allowsModifier(IModifier modifier);
+
     default boolean hasModifier(ItemStack stack, IModifier modifier) {
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
@@ -77,6 +79,7 @@ public interface IModifiable {
     }
 
     default boolean addModifier(IModifier modifier, ItemStack stack) {
+        if (!allowsModifier(modifier)) return false;
         CompoundTag nbt = stack.getOrCreateTag();
         CompoundTag modNbt = nbt.getCompound(MOD_ID);
         if (hasModifier(stack, modifier)) return false;

@@ -4,9 +4,8 @@ import com.mewo.mewosgear.content.modifiers.IModifiable;
 import com.mewo.mewosgear.content.modifiers.IModifier;
 import com.mewo.mewosgear.content.modifiers.ModifierEnums;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -14,26 +13,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierCategory.*;
 import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierToolType.*;
 
-public class ModifiableSwordItem extends SwordItem implements IModifiable {
+public class ModifiablePickaxeItem extends PickaxeItem implements IModifiable {
     private int maxModifierLevel;
-    public ModifiableSwordItem(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, int maxModifierLevel, Properties pProperties) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+
+    public ModifiablePickaxeItem(Tier tier, int dmg, float aspd, int maxModifierLevel, Properties properties) {
+        super(tier, dmg, aspd, properties);
         this.maxModifierLevel = maxModifierLevel;
-    }
-
-
-
-    @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        for (IModifier modifier : getModifiers(stack)) {
-            if (modifier.getCategory() == ONHIT) {
-                modifier.onHit(stack, target, attacker);
-            }
-        }
-        return super.hurtEnemy(stack, target, attacker);
     }
 
     @Override
@@ -50,6 +37,7 @@ public class ModifiableSwordItem extends SwordItem implements IModifiable {
     @Override
     public boolean allowsModifier(IModifier modifier) {
         ModifierEnums.ModifierToolType toolType = modifier.getToolType();
-        return toolType == SWORD || toolType == WEAPON;
+        return toolType == TOOL || toolType == PICKAXE;
     }
+
 }

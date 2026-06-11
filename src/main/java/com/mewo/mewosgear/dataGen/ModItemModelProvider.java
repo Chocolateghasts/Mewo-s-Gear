@@ -3,6 +3,7 @@ package com.mewo.mewosgear.dataGen;
 import com.mewo.mewosgear.Main;
 import com.mewo.mewosgear.content.item.ModifierItem;
 import com.mewo.mewosgear.content.registry.ModItems;
+import com.mewo.mewosgear.content.registry.ModTools;
 import com.mewo.mewosgear.content.registry.ModWeapons;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,9 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ModWeapons.STEEL_SWORD, "tools");
+        simpleItem(ModWeapons.STEEL_AXE, "tools");
+        simpleItem(ModTools.STEEL_PICKAXE, "tools");
+
         simpleItem(ModItems.STEEL_INGOT, "materials");
 
         for (RegistryObject<Item> item : ModItems.ITEMS.getEntries()) {

@@ -2,6 +2,7 @@ package com.mewo.mewosgear.content.item;
 
 import com.mewo.mewosgear.content.modifiers.IModifiable;
 import com.mewo.mewosgear.content.modifiers.IModifier;
+import com.mewo.mewosgear.content.modifiers.ModifierEnums;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
@@ -13,7 +14,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static com.mewo.mewosgear.content.modifiers.ModifierCategory.ONHIT;
+import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierCategory.*;
+import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierToolType.*;
+
 
 public class ModifiableAxeItem extends AxeItem implements IModifiable {
     private int maxModifierLevel;
@@ -42,5 +45,11 @@ public class ModifiableAxeItem extends AxeItem implements IModifiable {
     @Override
     public int getMaxModifierLevel() {
         return maxModifierLevel;
+    }
+
+    @Override
+    public boolean allowsModifier(IModifier modifier) {
+        ModifierEnums.ModifierToolType toolType = modifier.getToolType();
+        return toolType == AXE || toolType == WEAPON;
     }
 }

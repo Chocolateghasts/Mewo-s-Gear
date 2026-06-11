@@ -6,14 +6,16 @@ import net.minecraft.world.item.ItemStack;
 public class SimpleModifier implements IModifier {
     private String name;
     private int tier;
-    private ModifierCategory category;
+    private ModifierEnums.ModifierCategory category;
+    private ModifierEnums.ModifierToolType toolType;
     private int color;
 
-    public SimpleModifier(String name, int tier, ModifierCategory category, int color) {
+    public SimpleModifier(String name, int tier, ModifierEnums.ModifierCategory category, ModifierEnums.ModifierToolType toolType, int color) {
         this.name = name;
         this.tier = tier;
         this.category = category;
         this.color = color;
+        this.toolType = toolType;
     }
 
     @Override
@@ -27,8 +29,12 @@ public class SimpleModifier implements IModifier {
     }
 
     @Override
-    public ModifierCategory getCategory() {
+    public ModifierEnums.ModifierCategory getCategory() {
         return category;
+    }
+
+    public ModifierEnums.ModifierToolType getToolType() {
+        return toolType;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.mewo.mewosgear.content.item;
 
-import com.mewo.mewosgear.Main;
 import com.mewo.mewosgear.content.modifiers.IModifier;
 import com.mewo.mewosgear.content.registry.ModModifiers;
 import net.minecraft.ChatFormatting;
@@ -15,14 +14,13 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static com.mewo.mewosgear.Main.MOD_ID;
-import static com.mewo.mewosgear.content.modifiers.ModifierCategory.*;
+import static com.mewo.mewosgear.content.modifiers.ModifierEnums.ModifierCategory.*;
 
 public abstract class SpecialSwordItem extends SwordItem {
     private static final int DEFAULT_MAX_MODIFIER_LEVEL = 5;
