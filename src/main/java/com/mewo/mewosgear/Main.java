@@ -19,8 +19,9 @@ public class Main {
     public Main(FMLJavaModLoadingContext context) {
         IEventBus bus = context.getModEventBus();
         ModItems.register(bus);
-        ModBlocks.register(bus);
         ModWeapons.register(bus);
+        ModTools.register(bus);
+        ModBlocks.register(bus);
         ModBlockEntities.register(bus);
         ModMenuTypes.register(bus);
         ModEffects.register(bus);

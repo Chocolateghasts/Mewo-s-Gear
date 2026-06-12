@@ -47,6 +47,9 @@ public class ModItems {
     public static final RegistryObject<Item> GLUTTON_MODIFIER = ITEMS.register("glutton_modifier", () ->
             new ModifierItem(new Item.Properties(), ModModifiers.GLUTTON_MODIFIER));
 
+    public static final RegistryObject<Item> VEIN_MINER_MODIFIER = ITEMS.register("vein_miner_modifier", () ->
+        new ModifierItem(new Item.Properties(), ModModifiers.VEIN_MINER_MODIFIER));
+
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }

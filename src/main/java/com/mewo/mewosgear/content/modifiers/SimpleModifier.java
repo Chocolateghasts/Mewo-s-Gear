@@ -57,10 +57,6 @@ public class SimpleModifier implements IModifier {
 
     }
 
-    @Override
-    public void onHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-
-    }
 
     @Override
     public int getColor() {

@@ -29,7 +29,7 @@ public class ModifiableAxeItem extends AxeItem implements IModifiable {
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         for (IModifier modifier : getModifiers(stack)) {
-            if (modifier.getCategory() == ONHIT) {
+            if (modifier.getCategory() == ON_HIT) {
                 modifier.onHit(stack, target, attacker);
             }
         }
