@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -151,7 +152,8 @@ Utility:
         @Override
         public void onBreak(ItemStack stack, Level level, BlockState blockState, BlockPos pos, LivingEntity player) {
             if (level.isClientSide) return;
-            Set<BlockPos> blocks = MathUtil.getAllAdjacentBlocks(pos, 10, level, blockState);
+
+            Set<BlockPos> blocks = MathUtil.getAllAdjacentBlocks(pos, 5, level, blockState);
             for (BlockPos pos1 : blocks) {
                 BlockState blockState1 = level.getBlockState(pos1);
                 boolean success = level.destroyBlock(pos1, false, player);
@@ -161,10 +163,12 @@ Utility:
                         serverPlayer.addItem(drop);
                     }
                 }
-
+                stack.hurtAndBreak(1, player, (livingEntity -> livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND)));
             }
         }
     };
+
+
 
     static {
         modifiers.put(FIRE_MODIFIER.getName(), FIRE_MODIFIER);
