@@ -50,6 +50,6 @@ public class ModifiableAxeItem extends AxeItem implements IModifiable {
     @Override
     public boolean allowsModifier(IModifier modifier) {
         ModifierEnums.ModifierToolType toolType = modifier.getToolType();
-        return toolType == AXE || toolType == WEAPON;
+        return toolType == AXE || toolType == WEAPON || toolType == TOOL;
     }
 }
