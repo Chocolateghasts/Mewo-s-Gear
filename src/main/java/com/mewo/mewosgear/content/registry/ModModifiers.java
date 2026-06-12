@@ -127,7 +127,25 @@ public class ModModifiers {
         }
     };
 
+//TODO: add more modifiers for tools
+    /*
+    Resource & Efficiency:
 
+    Fortune/Multiplier — chance to duplicate ore drops (classic Minecraft enchant vibe)
+    Ore Detection — highlights nearby ores through walls or shows a minimap
+    Unbreakable — tool never degrades or breaks
+
+Mining Behavior:
+
+    Area Mining — breaks blocks in a small radius around the target (like veinminer but less targeted)
+    Piercing — breaks through certain block types (obsidian, bedrock) or ignores hardness
+
+Utility:
+
+    XP Boost — multiply experience drops from mining
+    Block Storage — collected blocks go into a separate inventory instead of your main one
+
+     */
 
     public static final IModifier VEIN_MINER_MODIFIER = new SimpleModifier("vein_miner_modifier", 2, ON_BREAK, TOOL, 0xFFFFFF) {
         @Override
