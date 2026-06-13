@@ -30,12 +30,12 @@ public class BlockChemicalFactory extends BaseEntityBlock {
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return BlockEntityChemicalFactory;
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new BlockEntityChemicalFactory(pos, state);
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext collisionContext) {
         return VOXEL_SHAPE;
     }
 
@@ -73,7 +73,7 @@ public class BlockChemicalFactory extends BaseEntityBlock {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
         if (level.isClientSide) return null;
 
-        return createTickerHelper(blockEntityType, ModBlockEntities..get(),
+        return createTickerHelper(blockEntityType, ModBlockEntities.CHEMICAL_FACTORY_BE.get(),
                 (level1, pos, state1, blockEntity) ->
                         blockEntity.tick(level1, pos, state1));
     }

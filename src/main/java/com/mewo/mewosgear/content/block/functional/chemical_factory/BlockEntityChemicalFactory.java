@@ -1,5 +1,6 @@
 package com.mewo.mewosgear.content.block.functional.chemical_factory;
 
+import com.mewo.mewosgear.content.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -40,7 +41,7 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
     protected ContainerData containerData;
 
     public BlockEntityChemicalFactory(BlockPos pos, BlockState blockState) {
-        super(, pos, blockState);
+        super(ModBlockEntities.CHEMICAL_FACTORY_BE.get(), pos, blockState);
         this.containerData = new ContainerData() {
             @Override
             public int get(int pIndex) {
