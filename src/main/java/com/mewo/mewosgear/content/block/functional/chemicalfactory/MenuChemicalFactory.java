@@ -35,8 +35,10 @@ public class MenuChemicalFactory extends AbstractContainerMenu {
         addPlayerHotbar(inventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 10, 100));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 100, 100));
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 52, 9));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 52, 29));
+            this.addSlot(new SlotItemHandler(iItemHandler, 2, 150, 9));
+            this.addSlot(new SlotItemHandler(iItemHandler, 3, 150, 29));
         });
         System.out.println("created menu atually");
         addDataSlots(data);
@@ -81,6 +83,6 @@ public class MenuChemicalFactory extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.TOOL_MODIFICATION_TABLE.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.CHEMICAL_FACTORY.get());
     }
 }

@@ -54,8 +54,8 @@ public class ScreenChemicalFactory extends AbstractContainerScreen<MenuChemicalF
     @Override
     public void render(GuiGraphics graphics, int mX, int mY, float delta) {
         renderBackground(graphics);
+        drawSlots(graphics);
         super.render(graphics, mX, mY, delta);
         renderTooltip(graphics, mX, mY);
-        drawSlots(graphics);
     }
 }
