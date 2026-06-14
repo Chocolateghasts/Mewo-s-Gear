@@ -27,6 +27,7 @@ public class Main {
         ModEffects.register(bus);
 
         bus.addListener(this::commonSetup);
+        bus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

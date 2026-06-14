@@ -1,4 +1,4 @@
-package com.mewo.mewosgear.content.block.functional.tool_modification_table;
+package com.mewo.mewosgear.content.block.functional.toolmodificationtable;
 
 import com.mewo.mewosgear.content.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -19,8 +19,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.logging.Logger;
 
 public class BlockToolModificationTable extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0,0,0, 16, 16, 16);

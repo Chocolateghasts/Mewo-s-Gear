@@ -1,7 +1,8 @@
 package com.mewo.mewosgear.content.registry;
 
 import com.mewo.mewosgear.Main;
-import com.mewo.mewosgear.content.block.functional.tool_modification_table.MenuToolModificationTable;
+import com.mewo.mewosgear.content.block.functional.chemicalfactory.MenuChemicalFactory;
+import com.mewo.mewosgear.content.block.functional.toolmodificationtable.MenuToolModificationTable;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -17,6 +18,9 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<MenuToolModificationTable>> TOOL_MODIFICATION_TABLE_MENU =
             registerMenuType("tool_modification_table_menu", MenuToolModificationTable::new);
+
+    public static final RegistryObject<MenuType<MenuChemicalFactory>> CHEMICAL_FACTORY_MENU =
+            registerMenuType("chemical_factory_menu", MenuChemicalFactory::new);
 
     public static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

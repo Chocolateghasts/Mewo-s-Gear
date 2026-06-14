@@ -1,4 +1,4 @@
-package com.mewo.mewosgear.dataGen.loot;
+package com.mewo.mewosgear.datagen.loot;
 
 import com.mewo.mewosgear.content.registry.ModBlocks;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -24,6 +24,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.TOOL_MODIFICATION_TABLE.get());
+        this.dropSelf(ModBlocks.CHEMICAL_FACTORY.get());
     }
 
     public LootTable.Builder createOreDrops(Block block, Item item, float min, float max) {

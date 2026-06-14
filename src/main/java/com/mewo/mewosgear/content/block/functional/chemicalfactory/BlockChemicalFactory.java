@@ -1,6 +1,5 @@
-package com.mewo.mewosgear.content.block.functional.chemical_factory;
+package com.mewo.mewosgear.content.block.functional.chemicalfactory;
 
-import com.mewo.mewosgear.content.block.functional.tool_modification_table.BlockEntityToolModificationTable;
 import com.mewo.mewosgear.content.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 public class BlockChemicalFactory extends BaseEntityBlock {
     public static final VoxelShape VOXEL_SHAPE = Block.box(0, 0, 0, 16, 16, 16);
 
-    protected BlockChemicalFactory(Properties properties) {
+    public BlockChemicalFactory(Properties properties) {
         super(properties);
     }
 
@@ -62,6 +61,7 @@ public class BlockChemicalFactory extends BaseEntityBlock {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof BlockEntityChemicalFactory) {
                 NetworkHooks.openScreen((ServerPlayer) player, (BlockEntityChemicalFactory) blockEntity, pos);
+                System.out.println("opent screen");
             } else {
                 System.out.println("Cant do shit");
             }

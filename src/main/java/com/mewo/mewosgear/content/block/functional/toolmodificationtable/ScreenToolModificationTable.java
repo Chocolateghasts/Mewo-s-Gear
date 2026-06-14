@@ -1,4 +1,4 @@
-package com.mewo.mewosgear.content.block.functional.tool_modification_table;
+package com.mewo.mewosgear.content.block.functional.toolmodificationtable;
 
 import com.mewo.mewosgear.Main;
 import com.mewo.mewosgear.network.ModNetworkHandler;
@@ -13,8 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 
-import static com.mewo.mewosgear.content.block.functional.tool_modification_table.BlockEntityToolModificationTable.SLOT_COUNT;
-import static com.mewo.mewosgear.content.block.functional.tool_modification_table.MenuToolModificationTable.*;
+import static com.mewo.mewosgear.content.block.functional.toolmodificationtable.BlockEntityToolModificationTable.SLOT_COUNT;
 
 public class ScreenToolModificationTable extends AbstractContainerScreen<MenuToolModificationTable> {
 

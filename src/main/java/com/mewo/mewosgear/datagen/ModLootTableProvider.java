@@ -1,10 +1,8 @@
-package com.mewo.mewosgear.dataGen;
+package com.mewo.mewosgear.datagen;
 
-import com.mewo.mewosgear.dataGen.loot.ModBlockLootTables;
+import com.mewo.mewosgear.datagen.loot.ModBlockLootTables;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 import java.util.List;

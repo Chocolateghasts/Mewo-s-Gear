@@ -1,6 +1,7 @@
 package com.mewo.mewosgear;
 
-import com.mewo.mewosgear.content.block.functional.tool_modification_table.ScreenToolModificationTable;
+import com.mewo.mewosgear.content.block.functional.chemicalfactory.ScreenChemicalFactory;
+import com.mewo.mewosgear.content.block.functional.toolmodificationtable.ScreenToolModificationTable;
 import com.mewo.mewosgear.content.registry.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,5 +16,6 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         MenuScreens.register(ModMenuTypes.TOOL_MODIFICATION_TABLE_MENU.get(), ScreenToolModificationTable::new);
+        MenuScreens.register(ModMenuTypes.CHEMICAL_FACTORY_MENU.get(), ScreenChemicalFactory::new);
     }
 }

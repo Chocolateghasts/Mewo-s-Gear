@@ -1,7 +1,8 @@
 package com.mewo.mewosgear.content.registry;
 
 import com.mewo.mewosgear.Main;
-import com.mewo.mewosgear.content.block.functional.tool_modification_table.BlockToolModificationTable;
+import com.mewo.mewosgear.content.block.functional.chemicalfactory.BlockChemicalFactory;
+import com.mewo.mewosgear.content.block.functional.toolmodificationtable.BlockToolModificationTable;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -22,6 +23,9 @@ public class ModBlocks {
             registerBlock("tool_modification_table",
                     () -> new BlockToolModificationTable(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)));
 
+    public static final RegistryObject<BlockChemicalFactory> CHEMICAL_FACTORY =
+            registerBlock("chemical_factory",
+                    () -> new BlockChemicalFactory(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)));
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

@@ -1,6 +1,6 @@
 package com.mewo.mewosgear.network.packets;
 
-import com.mewo.mewosgear.content.block.functional.tool_modification_table.MenuToolModificationTable;
+import com.mewo.mewosgear.content.block.functional.toolmodificationtable.MenuToolModificationTable;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;

@@ -1,4 +1,4 @@
-package com.mewo.mewosgear.dataGen;
+package com.mewo.mewosgear.datagen;
 
 import com.mewo.mewosgear.Main;
 import com.mewo.mewosgear.content.registry.ModBlocks;

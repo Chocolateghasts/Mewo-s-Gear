@@ -1,10 +1,11 @@
-package com.mewo.mewosgear.content.block.functional.chemical_factory;
+package com.mewo.mewosgear.content.block.functional.chemicalfactory;
 
 import com.mewo.mewosgear.content.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,7 +14,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -71,8 +71,9 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return null;
+    public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        System.out.println("created menu");
+        return new MenuChemicalFactory(containerId, inventory, this, this.containerData);
     }
 
     // Misc
@@ -81,6 +82,7 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
         for (int i = 0; i < SLOT_COUNT; i++) {
             container.setItem(i, itemHandler.getStackInSlot(i));
         }
+        Containers.dropContents(this.level, this.worldPosition, container);
     }
 
     // Capability stuff

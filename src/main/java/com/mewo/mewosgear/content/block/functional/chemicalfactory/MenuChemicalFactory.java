@@ -1,9 +1,8 @@
-package com.mewo.mewosgear.content.block.functional.tool_modification_table;
+package com.mewo.mewosgear.content.block.functional.chemicalfactory;
 
 import com.mewo.mewosgear.content.registry.ModBlocks;
 import com.mewo.mewosgear.content.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -13,41 +12,33 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 
-import static com.mewo.mewosgear.content.block.functional.tool_modification_table.BlockEntityToolModificationTable.*;
+import static com.mewo.mewosgear.content.block.functional.chemicalfactory.BlockEntityChemicalFactory.SLOT_COUNT;
 
-public class MenuToolModificationTable extends AbstractContainerMenu {
-    public final BlockEntityToolModificationTable blockEntity;
+public class MenuChemicalFactory extends AbstractContainerMenu {
+    public final BlockEntityChemicalFactory blockEntity;
     private final Level level;
-    private final ContainerData containerData;
+    private ContainerData containerData;
 
-    public static final int SLOT_0_X = 60;
-    public static final int SLOT_0_Y = 40;
-
-    public static final int SLOT_1_X = 100;
-    public static final int SLOT_1_Y = 40;
-
-    public MenuToolModificationTable(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
-        this(containerId, inventory,
-                inventory.player.level().getBlockEntity(extraData.readBlockPos()),
+    public MenuChemicalFactory(int containerId, Inventory inventory, FriendlyByteBuf friendlyByteBuf) {
+        this(containerId, inventory, inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos()),
                 new SimpleContainerData(SLOT_COUNT));
     }
 
-    public MenuToolModificationTable(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.TOOL_MODIFICATION_TABLE_MENU.get(), containerId);
+    public MenuChemicalFactory(int containerId, Inventory inventory, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.CHEMICAL_FACTORY_MENU.get(), containerId);
         checkContainerSize(inventory, SLOT_COUNT);
-        blockEntity = ((BlockEntityToolModificationTable) entity);
+        blockEntity = (BlockEntityChemicalFactory) entity;
         this.level = inventory.player.level();
         this.containerData = data;
 
         addPlayerInventory(inventory);
         addPlayerHotbar(inventory);
 
-
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, SLOT_0_X, SLOT_0_Y));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, SLOT_1_X, SLOT_1_Y));
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 10, 100));
+            this.addSlot(new SlotItemHandler(iItemHandler, 1, 100, 100));
         });
-
+        System.out.println("created menu atually");
         addDataSlots(data);
     }
 
@@ -65,7 +56,6 @@ public class MenuToolModificationTable extends AbstractContainerMenu {
         }
     }
 
-    // made by claude ai
     public ItemStack quickMoveStack(Player player, int index) {
         Slot slot = this.slots.get(index);
         if (!slot.hasItem()) return ItemStack.EMPTY;
@@ -92,9 +82,5 @@ public class MenuToolModificationTable extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.TOOL_MODIFICATION_TABLE.get());
-    }
-
-    public void applyModifier(ServerPlayer player) {
-        blockEntity.tryApplyModifier();
     }
 }

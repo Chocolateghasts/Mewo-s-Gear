@@ -1,4 +1,4 @@
-package com.mewo.mewosgear.dataGen;
+package com.mewo.mewosgear.datagen;
 
 import com.mewo.mewosgear.Main;
 import com.mewo.mewosgear.content.registry.ModBlocks;
@@ -16,6 +16,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.TOOL_MODIFICATION_TABLE, "crafting");
+        blockWithItem(ModBlocks.CHEMICAL_FACTORY, "crafting");
     }
 
     private void blockWithItem(RegistryObject<? extends Block> block, String category) {

@@ -1,8 +1,8 @@
 package com.mewo.mewosgear.content.registry;
 
 import com.mewo.mewosgear.Main;
-import com.mewo.mewosgear.content.block.functional.chemical_factory.BlockEntityChemicalFactory;
-import com.mewo.mewosgear.content.block.functional.tool_modification_table.BlockEntityToolModificationTable;
+import com.mewo.mewosgear.content.block.functional.chemicalfactory.BlockEntityChemicalFactory;
+import com.mewo.mewosgear.content.block.functional.toolmodificationtable.BlockEntityToolModificationTable;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,7 +21,7 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<BlockEntityChemicalFactory>> CHEMICAL_FACTORY_BE
             = BLOCK_ENTITIES.register("chemical_factory_be", () ->
                     BlockEntityType.Builder.of(BlockEntityChemicalFactory::new,
-                            ModBlocks.CHEMICAL_FACTORY.get()).build(null);
+                            ModBlocks.CHEMICAL_FACTORY.get()).build(null));
 
     public static void register(IEventBus bus) {
         BLOCK_ENTITIES.register(bus);

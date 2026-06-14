@@ -1,6 +1,5 @@
-package com.mewo.mewosgear.content.block.functional.tool_modification_table;
+package com.mewo.mewosgear.content.block.functional.toolmodificationtable;
 
-import com.mewo.mewosgear.content.item.SpecialSwordItem;
 import com.mewo.mewosgear.content.modifiers.IModifiable;
 import com.mewo.mewosgear.content.modifiers.IModifier;
 import com.mewo.mewosgear.content.item.ModifierItem;
