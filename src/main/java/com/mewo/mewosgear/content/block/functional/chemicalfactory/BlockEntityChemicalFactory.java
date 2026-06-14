@@ -107,6 +107,8 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
     }
 
     // Misc
+
+    // TODO: add mix fluid drop on break, make it not destroy items to preserve the machine
     public void drops() {
         SimpleContainer container = new SimpleContainer(SLOT_COUNT);
         for (int i = 0; i < SLOT_COUNT; i++) {
