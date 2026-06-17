@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.Slot;
 import static com.mewo.mewosgear.content.block.functional.toolmodificationtable.BlockEntityToolModificationTable.SLOT_COUNT;
 
 public class ScreenChemicalFactory extends AbstractContainerScreen<MenuChemicalFactory> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "texture/gui/blocks/chemical_factory.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "textures/gui/blocks/chemical_factory/chemical_factory.png");
 
     public ScreenChemicalFactory(MenuChemicalFactory menu, Inventory inventory, Component title) {
         super(menu, inventory, title);

@@ -36,7 +36,7 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
     // Constants
     public static final int SLOT_COUNT = 4;
     public static final int INPUT_SLOT_1 = 0;
-    public static final int INPUT_SLOT_2= 1;
+    public static final int INPUT_SLOT_2 = 1;
     public static final int OUTPUT_SLOT_1 = 2;
     public static final int OUTPUT_SLOT_2 = 3;
     public static final int FLUID_CAPACITY = 4000;
@@ -46,11 +46,11 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
 
     // Capabilities
 
-    // Item
+        // Item
     private final ItemStackHandler itemHandler = new ItemStackHandler(SLOT_COUNT);
     LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    // Fluid
+        // Fluid
     private final FluidTank inputTank = new FluidTank(FLUID_CAPACITY);
     private final FluidTank inputTank1 = new FluidTank(FLUID_CAPACITY);
     private final FluidTank outputTank = new FluidTank(FLUID_CAPACITY);
@@ -63,7 +63,7 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
     });
     LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
-    // Electricity
+        // Electricity
     private final EnergyStorage energyStorage = new EnergyStorage(ENERGY_CAPACITY, ENERGY_RECEIVE, ENERGY_EXTRACT);
     LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
@@ -72,6 +72,7 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
 
     public BlockEntityChemicalFactory(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CHEMICAL_FACTORY_BE.get(), pos, blockState);
+        System.out.println("sloots" + itemHandler.getSlots());
         this.containerData = new ContainerData() {
             @Override
             public int get(int pIndex) {

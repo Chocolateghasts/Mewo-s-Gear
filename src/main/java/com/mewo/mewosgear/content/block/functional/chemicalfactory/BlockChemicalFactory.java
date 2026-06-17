@@ -61,9 +61,6 @@ public class BlockChemicalFactory extends BaseEntityBlock {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof BlockEntityChemicalFactory) {
                 NetworkHooks.openScreen((ServerPlayer) player, (BlockEntityChemicalFactory) blockEntity, pos);
-                System.out.println("opent screen");
-            } else {
-                System.out.println("Cant do shit");
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
