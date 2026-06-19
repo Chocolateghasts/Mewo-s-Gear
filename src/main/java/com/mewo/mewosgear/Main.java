@@ -39,7 +39,7 @@ public class Main {
         File file = EventSubscriber.getWorldFile();
         if (file != null) {
             File targetFile = new File(file, "Output.txt");
-            NodeNetworkEnums.Node node = new NodeNetworkEnums.Node(new BlockPos(1, 2, 3), 0);
+            NodeNetworkEnums.Node node = new NodeNetworkEnums.Node(0);
             JsonUtil.write(targetFile, node);
         }
     }
