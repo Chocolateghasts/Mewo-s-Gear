@@ -72,7 +72,6 @@ public class BlockEntityChemicalFactory extends BlockEntity implements MenuProvi
 
     public BlockEntityChemicalFactory(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CHEMICAL_FACTORY_BE.get(), pos, blockState);
-        System.out.println("sloots" + itemHandler.getSlots());
         this.containerData = new ContainerData() {
             @Override
             public int get(int pIndex) {

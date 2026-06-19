@@ -2,7 +2,10 @@ package com.mewo.mewosgear;
 
 import com.mewo.mewosgear.content.registry.*;
 import com.mewo.mewosgear.network.ModNetworkHandler;
+import com.mewo.mewosgear.util.file.json.JsonUtil;
+import com.mewo.mewosgear.util.nodenetwork.NodeNetworkEnums;
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -10,6 +13,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import java.io.File;
 
 @Mod(Main.MOD_ID)
 public class Main {
@@ -28,6 +33,15 @@ public class Main {
 
         bus.addListener(this::commonSetup);
         bus.addListener(this::addCreative);
+    }
+
+    public static void testFileHandling() {
+        File file = EventSubscriber.getWorldFile();
+        if (file != null) {
+            File targetFile = new File(file, "Output.txt");
+            NodeNetworkEnums.Node node = new NodeNetworkEnums.Node(new BlockPos(1, 2, 3), 0);
+            JsonUtil.write(targetFile, node);
+        }
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
