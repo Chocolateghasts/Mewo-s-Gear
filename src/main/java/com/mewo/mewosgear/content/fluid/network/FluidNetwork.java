@@ -3,6 +3,7 @@ package com.mewo.mewosgear.content.fluid.network;
 import com.mewo.mewosgear.util.nodenetwork.INodeNetwork;
 import com.mewo.mewosgear.util.nodenetwork.NodeNetworkEnums.*;
 import net.minecraft.core.BlockPos;
+import net.minecraftforge.energy.IEnergyStorage;
 
 import java.util.*;
 
@@ -15,25 +16,6 @@ public class FluidNetwork implements INodeNetwork {
         this.networkId = networkId;
     }
 
-    @Override
-    public int getNetworkId() {
-        return networkId;
-    }
-
-    @Override
-    public NodeNetworkType getNetworkType() {
-        return NodeNetworkType.FLUID;
-    }
-
-    @Override
-    public int getNodeCount() {
-        return nodes.size();
-    }
-
-    @Override
-    public Map<BlockPos, Node> getNodes() {
-        return Map.copyOf(nodes);
-    }
 
     // Methods
 
@@ -51,6 +33,9 @@ public class FluidNetwork implements INodeNetwork {
     public boolean hasNodeAtPos(BlockPos pos) {
         return false;
     }
+
+
+
 
     @Override
     public Node getNodeFromPos(BlockPos pos) {
@@ -73,6 +58,26 @@ public class FluidNetwork implements INodeNetwork {
             if (entry.getValue().id() == id) return entry.getValue();
         }
         return null;
+    }
+
+    @Override
+    public int getNetworkId() {
+        return networkId;
+    }
+
+    @Override
+    public NodeNetworkType getNetworkType() {
+        return NodeNetworkType.FLUID;
+    }
+
+    @Override
+    public int getNodeCount() {
+        return nodes.size();
+    }
+
+    @Override
+    public Map<BlockPos, Node> getNodes() {
+        return Map.copyOf(nodes);
     }
 
 

@@ -85,6 +85,4 @@ public interface INodeNetwork {
         }
         return getIdPathFromPrevious(start, end, previous);
     }
-
-
 }
